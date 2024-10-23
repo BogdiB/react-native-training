@@ -1,0 +1,2 @@
+# run on Expo Go on Android
+npx expo start --tunnel
