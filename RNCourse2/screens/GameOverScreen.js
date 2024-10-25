@@ -1,3 +1,5 @@
+import { StyleSheet } from "react-native";
+
 function GameOverScreen() {
 	return (
 	<>
@@ -6,3 +8,7 @@ function GameOverScreen() {
 }
 
 export default GameOverScreen;
+
+const styles = StyleSheet.create({
+	
+});

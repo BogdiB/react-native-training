@@ -11,12 +11,12 @@ function GoalInput(props) {
 	function addGoalHandler() {
 		if (goalText === "")
 			return;
-		props.onAddGoal();
+		props.onAddGoal(goalText);
 		setGoalText("");
 	}
 
 	return (
-	<Modal visible={props.visible} animationType="slide">
+	<Modal visible={props.visible} animationType="slide" onRequestClose={props.onCancel}>
 		<View style={styles.inputContainer}>
 			<Image source={require('../assets/images/goal.png')} style={styles.image} />
 			<TextInput
@@ -24,6 +24,9 @@ function GoalInput(props) {
 				placeholder='Course Goal'
 				onChangeText={goalInputHandler}
 				value={goalText}
+				autoCorrect={false}
+				autoComplete="off"
+				autoCapitalize="none"
 			/>
 
 			<View style={styles.buttonContainer}>
@@ -64,6 +67,8 @@ const styles = StyleSheet.create({
 		borderWidth: "1",
 		borderColor: "#cccccc",
 		borderRadius: 6,
+
+		color: "white",
 	},
 
 	buttonContainer: {

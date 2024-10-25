@@ -1,11 +1,50 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import Colors from "../consts/colors";
 
-function CustomButton(props) {
+function CustomButton({children, onPress}) {
+	function onPressHandler() { // in case I want to add something later
+		onPress();
+	}
+
 	return (
-	<View>
-		<Text>{props.children}</Text>
+	<View style={styles.container}>
+		<Pressable
+			style={({pressed}) => pressed ? [styles.innerContainer, styles.pressed] : styles.innerContainer}
+			onPress={onPressHandler}
+			android_ripple={{ color: Colors.primary600 }}
+		>
+			<Text style={styles.buttonText}>{children}</Text>
+		</Pressable>
 	</View>
 	);
 }
 
 export default CustomButton;
+
+const styles = StyleSheet.create({
+	container: {
+		margin: 4,
+		borderRadius: 28,
+
+		overflow: "hidden",
+	},
+
+	innerContainer: {
+		backgroundColor: Colors.primary500,
+
+		paddingVertical: 8,
+		paddingHorizontal: 16,
+		margin: 4,
+
+		elevation: 2,
+	},
+	
+	buttonText: {
+		color: "white",
+		textAlign: "center",
+	},
+
+	pressed: {
+		opacity: 0.75,
+	},
+});

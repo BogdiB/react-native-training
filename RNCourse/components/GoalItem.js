@@ -18,9 +18,9 @@ export default GoalItem;
 
 const styles = StyleSheet.create({
 	listItem: {
-		margin: 8,
-		borderBottomWidth: 1,
-		borderBottomColor: "#cccccc",
+		margin: 5,
+		borderWidth: 1,
+		borderColor: "#cccccc",
 	},
 
 	pressedItem: {
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
 	},
 
 	listItemText: {
-		color: "lightgrey",
+		color: "white",
 	}
 });
