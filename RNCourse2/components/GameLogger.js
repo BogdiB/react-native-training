@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import Colors from "../consts/colors";
 
 function GameLogger({children}) {
@@ -11,13 +11,15 @@ function GameLogger({children}) {
 
 export default GameLogger;
 
+const deviceWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
 
-        margin: 24,
-        padding: 24,
+        margin: deviceWidth < 380 ? 12 : 24,
+        padding: deviceWidth < 380 ? 12 : 24,
 
         borderWidth: 4,
         borderColor: Colors.secondary300,
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
 
     numberText: {
         color: Colors.secondary300,
-        fontSize: 36,
-        fontWeight: "bold",
+        fontFamily: "open-sans-bold",
+        fontSize: deviceWidth < 380 ? 28 : 36,
     },
 });

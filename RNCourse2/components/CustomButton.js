@@ -24,14 +24,14 @@ export default CustomButton;
 const styles = StyleSheet.create({
 	container: {
 		margin: 4,
-		borderRadius: 28,
-
+		
 		overflow: "hidden",
 	},
-
+	
 	innerContainer: {
 		backgroundColor: Colors.primary500,
-
+		
+		borderRadius: 5,
 		paddingVertical: 8,
 		paddingHorizontal: 16,
 		margin: 4,
@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
 	
 	buttonText: {
 		color: "white",
+		fontFamily: "open-sans",
+		fontSize: 20,
 		textAlign: "center",
 	},
 

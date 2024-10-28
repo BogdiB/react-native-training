@@ -1,7 +1,8 @@
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert, Text, Dimensions } from "react-native";
 import { useState } from "react";
 import CustomButton from "../components/CustomButton";
 import Colors from "../consts/colors";
+import Card from "../components/Card";
 
 function StartGameScreen(props) {
 	const [enteredNumber, setEnteredNumber] = useState("");
@@ -26,18 +27,20 @@ function StartGameScreen(props) {
 	}
 
 	return (
-	<View style={styles.container}>
+	<Card style={styles.container}>
+		<Text style={styles.text}>Enter a number:</Text>
 		<TextInput
 			style={styles.textInput}
-			maxLength={2}
+			onChangeText={textInputHandler}
+			value={enteredNumber}
 			keyboardType="number-pad"
+			maxLength={2}
 			autoCorrect={false}
 			autoCapitalize="none"
 			autoComplete="off"
 			importantForAutofill="no"
-			onChangeText={textInputHandler}
-			value={enteredNumber}
 		/>
+
 		<View style={styles.buttonContainer}>
 			<View style={styles.button}>
 				<CustomButton onPress={resetInput}>Reset</CustomButton>
@@ -46,30 +49,19 @@ function StartGameScreen(props) {
 				<CustomButton onPress={confirmInput}>Confirm</CustomButton>
 			</View>
 		</View>
-	</View>
+	</Card>
 	);
 }
 
 export default StartGameScreen;
 
+const deviceHeight = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
 	container: {
-		alignItems: "center",
-
-		marginTop: 50,
-		marginHorizontal: 20,
-		padding: 16,
-
-		borderWidth: 0,
-		borderRadius: 5,
-		borderColor: "black",
-
-		backgroundColor: "#4e0329",
-		elevation: 20,
-		shadowColor: "black",
-		shadowOffset: {width: 2, height: 2},
-		shadowRadius: 6,
-		shadowOpacity: 0.8,
+		flex: 1,
+		
+		marginTop: deviceHeight < 380 ? 10 : 20,
 	},
 
 	textInput: {
@@ -88,7 +80,11 @@ const styles = StyleSheet.create({
 	},
 
 	text: {
+		color: Colors.secondary300,
 		fontSize: 20,
+		fontWeight: "bold",
+
+		marginTop: 8,
 	},
 
 	buttonContainer: {
