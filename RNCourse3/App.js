@@ -2,13 +2,15 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Provider } from 'react-redux';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
-import FavoritesContextProvider from './store/context/favorites-context';
+// import FavoritesContextProvider from './store/context/favorites-context';
+import { store } from './store/redux/store';
 
 
 const Stack = createNativeStackNavigator();
@@ -51,7 +53,8 @@ export default function App() {
 	<View style={styles.container}>
 		<StatusBar barStyle={'light-content'} />
 
-		<FavoritesContextProvider>
+		{/* <FavoritesContextProvider> */}
+		<Provider store={store}>
 			<NavigationContainer>
 				<Stack.Navigator
 					screenOptions={{
@@ -80,7 +83,8 @@ export default function App() {
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
-		</FavoritesContextProvider>
+		</Provider>
+		{/* </FavoritesContextProvider> */}
 	</View>
   );
 }
