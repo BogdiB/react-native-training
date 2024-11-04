@@ -40,7 +40,7 @@ function CustomHeader() {
 			</Pressable>
 		</View>
 
-		<SearchBar />
+		<SearchBar filter={true} />
 	</SafeAreaView>
 	);
 }
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 
 		borderBottomWidth: 1,
-		borderBlockColor: "grey",
+		borderBottomColor: Colors.grey,
 	},
 
 	shadow: {
@@ -97,8 +97,6 @@ const styles = StyleSheet.create({
 	image: {
 		width: HeaderStyles.height / 2,
 		height: HeaderStyles.height / 2,
-
-		borderRadius: HeaderStyles.height / 4,
 	},
 
 	titleContainer: {

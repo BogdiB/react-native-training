@@ -2,6 +2,9 @@ import { forwardRef, useCallback, useMemo } from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { useSharedValue } from "react-native-reanimated";
+import { Link } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+
 import Colors from "@/constants/Colors";
 
 
@@ -32,16 +35,38 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
 	>
 		<BottomSheetView style={styles.contentContainer}>
 			<BottomSheetView style={styles.toggle}>
-				<Pressable style={styles.toggleActive}>
+				<Pressable style={({pressed}) => [styles.toggleActive, pressed ? styles.buttonOnPress : null]}>
 					<Text style={styles.activeText}>Delivery</Text>
 				</Pressable>
 
-				<Pressable style={styles.toggleInactive}>
+				<Pressable style={({pressed}) => [styles.toggleInactive, pressed ? styles.buttonOnPress : null]}>
 					<Text style={styles.inactiveText}>Pickup</Text>
 				</Pressable>
 			</BottomSheetView>
 
-			<Pressable style={({pressed}) => [styles.button, pressed? styles.buttonOnPress : null]} onPress={() => {dismiss();}}>
+			<Text style={styles.subheader}>Your Location</Text>
+			<Link href={"/modal/location-search"} asChild>
+				<Pressable style={({pressed}) => [pressed ? styles.buttonOnPress : null]} onPress={() => dismiss()}>
+					<BottomSheetView style={styles.item}>
+						<Ionicons style={styles.itemIcon} name="location-outline" size={24} color={Colors.medium} />
+						<Text style={styles.itemText}>Location</Text>
+						<Ionicons style={styles.itemIcon} name="chevron-forward-outline" size={24} color={Colors.primary} />
+					</BottomSheetView>
+				</Pressable>
+			</Link>
+			
+			<Text style={styles.subheader}>Arrival Time</Text>
+			<Link href={"/"} asChild>
+				<Pressable style={({pressed}) => [pressed ? styles.buttonOnPress : null]}>
+					<BottomSheetView style={styles.item}>
+						<Ionicons style={styles.itemIcon} name="stopwatch-outline" size={24} color={Colors.medium} />
+						<Text style={styles.itemText}>Now</Text>
+						<Ionicons style={styles.itemIcon} name="chevron-forward-outline" size={24} color={Colors.primary} />
+					</BottomSheetView>
+				</Pressable>
+			</Link>
+
+			<Pressable style={({pressed}) => [styles.button, pressed ? styles.buttonOnPress : null]} onPress={() => {dismiss();}}>
 				<Text style={styles.buttonText}>Confirm</Text>
 			</Pressable>
 		</BottomSheetView>
@@ -90,6 +115,39 @@ const styles = StyleSheet.create({
 
 	inactiveText: {
 		color: Colors.primary,
+	},
+
+	subheader: {
+		fontSize: 16,
+		fontWeight: "600",
+
+		margin: 16,
+	},
+
+	item: {
+		flexDirection: "row",
+		gap: 8,
+		alignItems: "center",
+
+		backgroundColor: "white",
+
+		padding: 10,
+
+		borderTopWidth: 1,
+		borderTopColor: Colors.grey,
+		borderBottomWidth: 1,
+		borderBottomColor: Colors.grey,
+	},
+
+	itemIcon: {
+		marginHorizontal: 5,
+	},
+
+	itemText: {
+		flex: 1,
+
+		fontSize: 18,
+		justifyContent: "center",
 	},
 
 	button: {

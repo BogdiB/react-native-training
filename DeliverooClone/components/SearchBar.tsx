@@ -5,20 +5,20 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 
 
-function SearchBar() {
+function SearchBar({ filter, placeholder }: {filter?: boolean, placeholder?: string}) {
 	return (
 	<View style={styles.searchContainer}>
 		<View style={styles.searchSection}>
 			<View style={styles.searchField}>
 				<Ionicons style={styles.searchIcon} name="search-outline" size={20} color={Colors.medium} />
-				<TextInput style={styles.input} placeholder="Restaurants, groceries, dishes" placeholderTextColor="#cbb" />
+				<TextInput style={styles.input} placeholder={placeholder ? placeholder : "Restaurants, groceries, dishes"} placeholderTextColor="#cbb" />
 			</View>
 
-			<Link href={"/"} asChild>
+			{filter && <Link href={"/modal/filter"} asChild>
 				<Pressable style={({pressed}) => [styles.optionButton, pressed ? styles.buttonOnPress : null]}>
 					<Ionicons name="options-outline" size={20} color={Colors.primary} />
 				</Pressable>
-			</Link>
+			</Link>}
 		</View>
 	</View>
 	);

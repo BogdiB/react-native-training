@@ -25,8 +25,20 @@ export const categories = [
   },
 ];
 
-export const restaurants = [
+export interface Restaurants {
+  id: string,
+  name: string,
+  rating: string,
+  ratings: string,
+  img: any,
+  distance: string,
+  tags: string[],
+  duration: string,
+}
+
+export const restaurants: Restaurants[] = [
   {
+    id: "1",
     name: 'Vapiano',
     rating: '4.5 Excellent',
     ratings: '(500+)',
